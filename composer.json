@@ -1,5 +1,5 @@
 {
-  "name": "andras/analysis",
+  "name": "lanbenator/analysis",
   "require": {
     "phpunit/phpunit": "^5.1",
     "doctrine/orm": "2.4.*",
