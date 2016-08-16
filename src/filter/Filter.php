@@ -29,6 +29,11 @@ abstract class Filter
     protected $filterDB;
 
     /**
+     * @var string
+     */
+    protected $styleClass;
+
+    /**
      * Filter constructor.
      * @param string $id
      * @param string $name
@@ -108,4 +113,22 @@ abstract class Filter
         $this->filterDB = $filterDB;
     }
 
+    /**
+     * @return string
+     */
+    public function getStyleClass()
+    {
+        return $this->styleClass;
+    }
+
+    /**
+     * @param string $styleClass
+     */
+    public function setStyleClass($styleClass)
+    {
+        $this->styleClass = $styleClass;
+    }
+
+
+    abstract public function printFilter();
 }

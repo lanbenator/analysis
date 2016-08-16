@@ -1,13 +1,4 @@
 <?php
-//echo dirname(__FILE__);
-//require_once dirname(__FILE__)."/../filter/CheckboxFilter.php";
-//require_once "../filter/RadioFilter.php";
-//require_once "../filter/SelectFilter.php";
-//require_once "../StringUtils.php";
-//require_once "../value/Value.php";
-
-
-
 /**
  * Created by PhpStorm.
  * User: 212465052
@@ -78,7 +69,7 @@ class FilterFactory
     private static function createValue( $values ){
         $value = null;
         foreach( $values->value as $valueObj ){
-            $value = ValueFactory::createValue($valueObj, "value");;
+            $value = ValueFactory::createValue($valueObj, "value");
         }
         return $value;
     }
