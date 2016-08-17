@@ -1,4 +1,7 @@
 <?php
+
+namespace analysis\factory;
+
 /**
  * Created by PhpStorm.
  * User: 212465052

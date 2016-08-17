@@ -1,5 +1,7 @@
 <?php
 
+namespace analysis\value;
+
 /**
  * Created by PhpStorm.
  * User: 212465052

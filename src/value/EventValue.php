@@ -1,5 +1,7 @@
 <?php
 
+namespace analysis\value;
+
 require_once "Value.php";
 
 /**

@@ -1,5 +1,7 @@
 <?php
 
+namespace analysis;
+
 /**
  * Created by PhpStorm.
  * User: 212465052

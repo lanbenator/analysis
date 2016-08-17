@@ -1,5 +1,7 @@
 <?php
 
+namespace analysis\filter;
+
 require_once "SelectFilter.php";
 
 /**
