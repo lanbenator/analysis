@@ -4,8 +4,8 @@
     "phpunit/phpunit": "^5.1"
   },
   "autoload": {
-    "psr-0": {
-      "analysis": "src/"
+    "psr-4": {
+      "analysis\\": "src/"
     }
   }
 }
