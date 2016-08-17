@@ -86,7 +86,7 @@ class SelectFilter extends Filter
                 }
                 $res .= ">";
                 $res .= $value->getName()."</option>";
-                if( isset( $value->getFilterDB() ) ) {
+                if( $value->getFilterDB() !== null ) {
                     $res .= " (n=" . AnalysisUtils::countDBContent("exprtable", "clintable", $value->getFilterDB() . " AND premium=1", "private") . ")";
                 }
                 $res .= "</option>";
