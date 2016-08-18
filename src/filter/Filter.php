@@ -132,5 +132,19 @@ abstract class Filter
     }
 
 
-    abstract public function printFilter();
+    /**
+     * Print a filter based on the given $templateFunction
+     *
+     * @param $templateFunction: the name of a function which displays the content of this Filter
+     * @return mixed
+     */
+    abstract public function printFilter($templateFunction);
+
+
+    /**
+     * Print the values of this filter.
+     *
+     * @return mixed
+     */
+    abstract protected function printValues();
 }

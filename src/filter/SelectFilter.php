@@ -51,6 +51,45 @@ class SelectFilter extends Filter
         $this->values = $values;
     }
 
+    /**
+     * $res .= ($f['new'] == "true") ? "<tr class='new'>" : "<tr>";
+
+    $res .= "<td style='" . $f->name['style'] . "' colspan=2>";
+    $res .= PrintUtils::printLabel($id, $f, $exprtable, $clintable, "before");
+    $res .= "</td>";
+
+    $res .= "<td>";
+    $res .= printSelect($f, $id, $exprtable, $clintable);
+    $res .= "</td>";
+
+    if (isset($f->tip) && $f->tip != "") {
+    $res .= "<td>" . printInfo($f->tip) . "</td>";
+    }
+
+    break;
+     */
+    public function printFilter($templateFunction = 'printFilterInTable'){
+        $templateFunction();
+    }
+
+    private function printFilterInTable() {
+        $res = "<tr class='". ($this->new) ? "new" : "" ."'>'";
+
+        $res .= "<td style='". $this->styleClass ."' colspan=2>";
+        // TODO exprtable, clintable
+    //        $res .= PrintUtils::printLabel($this->id, $f, "exprtable", "clintable", "before");
+        $res .= $this->name;
+        $res .= "</td>";
+
+        $res .= "<td>".$this->printValue()."</td>";
+
+        if (isset($this->tip) && $this->tip != "") {
+            $res .= "<td>" . printInfo($this->tip) . "</td>";
+        }
+
+        return $res;
+    }
+
 //    function printSelect($f, $id, $exprtable, $clintable) {
 //        $res = "";
 //
@@ -74,7 +113,7 @@ class SelectFilter extends Filter
 //        $res .= "</select>";
 //        return $res;
 //    }
-    public function printFilter()
+    public function printValues()
     {
         $res = "<select id='$this->id' name='$this->name' class='$this->styleClass'>".
             "<option value='false'>all</option>";
@@ -87,6 +126,7 @@ class SelectFilter extends Filter
                 $res .= ">";
                 $res .= $value->getName()."</option>";
                 if( $value->getFilterDB() !== null ) {
+                    // TODO exprtable, clintable
                     $res .= " (n=" . AnalysisUtils::countDBContent("exprtable", "clintable", $value->getFilterDB() . " AND premium=1", "private") . ")";
                 }
                 $res .= "</option>";
