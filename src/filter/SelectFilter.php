@@ -2,6 +2,10 @@
 
 namespace analysis\filter;
 
+use analysis\templates\Template;
+use Twig_Environment;
+use Twig_Loader_Filesystem;
+
 require_once "Filter.php";
 
 /**
@@ -27,11 +31,8 @@ class SelectFilter extends Filter
      */
     public function __construct($id, $name, array $values, $tip=null, $filterDB=null)
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->tip = $tip;
+        parent::__construct($id, $name, $tip, $filterDB);
         $this->values = $values;
-        $this->filterDB = $filterDB;
     }
 
 
@@ -90,48 +91,32 @@ class SelectFilter extends Filter
         return $res;
     }
 
-//    function printSelect($f, $id, $exprtable, $clintable) {
-//        $res = "";
-//
-//        $res .= "<select name='" . $id . "' id='" . $id . "' class='" . $f->style_class . "'>\n";
-//        foreach ($f->values->value as $v) {
-//            $res .= "<option value='" . $v->id . "'";
-//
-//            if (isset($d_id) && $d_id == $v->id) {
-//                $res .= " selected='selected'";
-//            } elseif (isset($v['selected']) && $v['selected'] == "selected") {
-//                $res .= " selected='selected'";
-//            }
-//
-//            $res .= ">";
-//            //$res .= countDBContent($exprtable, $clintable, $v->filterDB." AND premium=1");
-//            $res .= $v->name;
-//            if (isset($v->filterDB))
-//                $res .= " (n=" . AnalysisUtils::countDBContent($exprtable, $clintable, $v->filterDB . " AND premium=1", "private") . ")";
-//            $res .= "</option>";
-//        }
-//        $res .= "</select>";
-//        return $res;
-//    }
     public function printValues()
     {
-        $res = "<select id='$this->id' name='$this->name' class='$this->styleClass'>".
-            "<option value='false'>all</option>";
-            foreach($this->values as $value){
-                $res .= "<option value='".$value->getId()."'";
-                // TODO if selected
-                if(false) {
-                    $res .= " selected='selected'";
-                }
-                $res .= ">";
-                $res .= $value->getName()."</option>";
-                if( $value->getFilterDB() !== null ) {
-                    // TODO exprtable, clintable
-                    $res .= " (n=" . AnalysisUtils::countDBContent("exprtable", "clintable", $value->getFilterDB() . " AND premium=1", "private") . ")";
-                }
-                $res .= "</option>";
-            }
-        $res .= "</select>";
-        return $res;
+//        $res = "<select id='$this->id' name='$this->name' class='$this->styleClass'>".
+//            "<option value='false'>all</option>";
+//            foreach($this->values as $value){
+//                $res .= "<option value='".$value->getId()."'";
+//                // TODO if selected
+//                if(false) {
+//                    $res .= " selected='selected'";
+//                }
+//                $res .= ">";
+//                $res .= $value->getName()."</option>";
+//                if( $value->getFilterDB() !== null ) {
+//                    $res .= " (n=" . AnalysisUtils::countDBContent("exprtable", "clintable", $value->getFilterDB() . " AND premium=1", "private") . ")";
+//                }
+//                $res .= "</option>";
+//            }
+//        $res .= "</select>";
+//        return $res;
+        $template = Template::getTwig()->loadTemplate('selectFilter.tpl');
+        return $template->render(
+            array(
+                'id' => $this->id,
+                'name' => $this->name,
+                'values' => $this->values
+            )
+        );
     }
 }

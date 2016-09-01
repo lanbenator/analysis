@@ -1,6 +1,9 @@
 <?php
 
 namespace analysis\factory;
+use analysis\utils\StringUtils;
+use analysis\value\EventValue;
+use analysis\value\Value;
 
 /**
  * Created by PhpStorm.

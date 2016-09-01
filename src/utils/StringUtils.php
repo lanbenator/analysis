@@ -1,6 +1,6 @@
 <?php
 
-namespace analysis;
+namespace analysis\utils;
 
 /**
  * Created by PhpStorm.

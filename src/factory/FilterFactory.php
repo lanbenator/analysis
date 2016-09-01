@@ -1,6 +1,9 @@
 <?php
 
 namespace analysis\factory;
+use analysis\filter\CheckboxFilter;
+use analysis\filter\RadioFilter;
+use analysis\filter\SelectFilter;
 
 /**
  * Created by PhpStorm.
