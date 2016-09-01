@@ -39,4 +39,10 @@ class SelectFilterTest extends PHPUnit_Framework_TestCase
         $printedValues = $this->sf->printValues();
         $this->assertRegExp("/<option value='false'>all<\/option>/", $printedValues);
     }
+
+    public function testPrintFilter(){
+        $printedFilter = $this->sf->printFilter();
+        $this->assertRegExp("/<tr/", $printedFilter);
+        $this->assertRegExp("/<\/tr/", $printedFilter);
+    }
 }

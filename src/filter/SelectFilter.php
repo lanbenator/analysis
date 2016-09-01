@@ -69,27 +69,34 @@ class SelectFilter extends Filter
 
     break;
      */
-    public function printFilter($templateFunction = 'printFilterInTable'){
-        $templateFunction();
+    public function printFilter($templateFile = 'filterInTable.tpl'){
+        $template = Template::getTwig()->loadTemplate($templateFile);
+        return $template->render(
+            array(
+                'name' => $this->name,
+                'values' => $this->printValues()
+            )
+        );
+
     }
 
-    private function printFilterInTable() {
-        $res = "<tr class='". ($this->new) ? "new" : "" ."'>'";
-
-        $res .= "<td style='". $this->styleClass ."' colspan=2>";
-        // TODO exprtable, clintable
-    //        $res .= PrintUtils::printLabel($this->id, $f, "exprtable", "clintable", "before");
-        $res .= $this->name;
-        $res .= "</td>";
-
-        $res .= "<td>".$this->printValue()."</td>";
-
-        if (isset($this->tip) && $this->tip != "") {
-            $res .= "<td>" . printInfo($this->tip) . "</td>";
-        }
-
-        return $res;
-    }
+//    private function printFilterInTable() {
+//        $res = "<tr class='". ($this->new) ? "new" : "" ."'>'";
+//
+//        $res .= "<td style='". $this->styleClass ."' colspan=2>";
+//        // TODO exprtable, clintable
+//    //        $res .= PrintUtils::printLabel($this->id, $f, "exprtable", "clintable", "before");
+//        $res .= $this->name;
+//        $res .= "</td>";
+//
+//        $res .= "<td>".$this->printValue()."</td>";
+//
+//        if (isset($this->tip) && $this->tip != "") {
+//            $res .= "<td>" . printInfo($this->tip) . "</td>";
+//        }
+//
+//        return $res;
+//    }
 
     public function printValues()
     {
@@ -114,7 +121,6 @@ class SelectFilter extends Filter
         return $template->render(
             array(
                 'id' => $this->id,
-                'name' => $this->name,
                 'values' => $this->values
             )
         );

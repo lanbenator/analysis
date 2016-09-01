@@ -1,4 +1,4 @@
-<select id='{{id}}' name='{{name}}' class='{{styleClass}}'>
+<select id='{{id}}' name='{{id}}' class='{{styleClass}}'>
     <option value='false'>all</option>
     {% for value in values %}
         <option value='{{value.id}}'
