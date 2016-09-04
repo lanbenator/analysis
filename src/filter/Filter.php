@@ -133,12 +133,12 @@ abstract class Filter
 
 
     /**
-     * Print a filter based on the given $templateFunction
+     * Print a filter based on the given $templateFile which points to a Twig template
      *
-     * @param $templateFunction: the name of a function which displays the content of this Filter
+     * @param $templateFile: the name of a function which displays the content of this Filter
      * @return mixed
      */
-    abstract public function printFilter($templateFunction);
+    abstract public function printFilter($templateFile);
 
 
     /**

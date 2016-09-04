@@ -3,8 +3,6 @@
 namespace analysis\filter;
 
 use analysis\templates\Template;
-use Twig_Environment;
-use Twig_Loader_Filesystem;
 
 require_once "Filter.php";
 
@@ -77,7 +75,6 @@ class SelectFilter extends Filter
                 'values' => $this->printValues()
             )
         );
-
     }
 
 //    private function printFilterInTable() {
