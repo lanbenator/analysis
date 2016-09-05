@@ -1,0 +1,13 @@
+<phpunit bootstrap="bootstrap.php">
+    <testsuites>
+        <testsuite name="factory">
+            <directory>./factory</directory>
+        </testsuite>
+        <testsuite name="filter">
+            <directory>./filter</directory>
+        </testsuite>
+        <testsuite name="utils">
+            <directory>./utils</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
