@@ -53,7 +53,8 @@ class SelectFilterTest extends PHPUnit_Framework_TestCase
     }
 
     public function testSelected(){
-        $printedFilter = $this->sf->printFilter("vid2");
+        $_POST['id'] = "vid2";
+        $printedFilter = $this->sf->printFilter();
         $this->assertNotRegExp("/<option value='vid'[\s]*selected='selected'[\s]*>/", $printedFilter);
         $this->assertRegExp("/<option value='vid2'[\s]*selected='selected'[\s]*>/", $printedFilter);
     }

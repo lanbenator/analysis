@@ -42,7 +42,8 @@ class TextFilterTest extends PHPUnit_Framework_TestCase
     }
 
     public function testSelected(){
-        $printedFilter = $this->tf->printFilter("new value");
+        $_POST['id'] = "new value";
+        $printedFilter = $this->tf->printFilter();
         $this->assertRegExp("/value=\"new value\"/", $printedFilter);
     }
 }

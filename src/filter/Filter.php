@@ -154,6 +154,24 @@ abstract class Filter
     }
 
     /**
+     * This method gets the value from $_POST and if it is not defined, then use the default value of the filter.
+     *
+     * @return string
+     */
+    protected function getValueFromPostOrDefault()
+    {
+        $value="";
+        if (isset($_POST[$this->id]) && $_POST[$this->id] != "") {
+            $value = $_POST[$this->id];
+            return $value;
+        } elseif ($this->default != "") {
+            $value = $this->default;
+            return $value;
+        }
+        return $value;
+    }
+
+    /**
      * Print a filter based on the given $templateFile which points to a Twig template
      *
      * @param $templateFile: the name of a function which displays the content of this Filter

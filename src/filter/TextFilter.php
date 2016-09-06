@@ -19,13 +19,13 @@ class TextFilter extends Filter
      * @param $templateFile : the name of a function which displays the content of this Filter
      * @return mixed
      */
-    public function printFilter($value="", $templateFile="filterInTable.tpl")
+    public function printFilter($templateFile="filterInTable.tpl")
     {
         $template = Template::getTwig()->loadTemplate($templateFile);
         return $template->render(
             array(
                 'name' => $this->name,
-                'values' => $this->printValues($value)
+                'values' => $this->printValues()
             )
         );
     }
@@ -35,11 +35,9 @@ class TextFilter extends Filter
      *
      * @return mixed
      */
-    public function printValues($value="")
+    public function printValues()
     {
-        if($this->default!="" && $value==""){
-            $value = $this->default;
-        }
+        $value = $this->getValueFromPostOrDefault();
 
         $template = Template::getTwig()->loadTemplate('textFilter.tpl');
         return $template->render(

@@ -67,12 +67,12 @@ class SelectFilter extends Filter
 
     break;
      */
-    public function printFilter($selected="", $templateFile = 'filterInTable.tpl'){
+    public function printFilter($templateFile = 'filterInTable.tpl'){
         $template = Template::getTwig()->loadTemplate($templateFile);
         return $template->render(
             array(
                 'name' => $this->name,
-                'values' => $this->printValues($selected)
+                'values' => $this->printValues()
             )
         );
     }
@@ -95,11 +95,9 @@ class SelectFilter extends Filter
 //        return $res;
 //    }
 
-    public function printValues($selected="")
+    public function printValues()
     {
-        if($this->default!="" && $selected==""){
-            $selected = $this->default;
-        }
+        $selected = $this->getValueFromPostOrDefault();
 
         $template = Template::getTwig()->loadTemplate('selectFilter.tpl');
         return $template->render(
