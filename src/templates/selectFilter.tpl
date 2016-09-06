@@ -2,7 +2,7 @@
     <option value='false'>all</option>
     {% for value in values %}
         <option value='{{value.id}}'
-            {% if value.selected %}
+            {% if selected is same as(value.id) %}
                 selected='selected'
             {% endif %}
         >

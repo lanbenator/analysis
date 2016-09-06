@@ -1,1 +1,1 @@
-<input type="text" id="{{id}}" name="{{id}}" />
+<input type="text" id="{{id}}" name="{{id}}" value="{{value}}" />

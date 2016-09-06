@@ -36,18 +36,24 @@ abstract class Filter
     protected $styleClass;
 
     /**
+     * @var string
+     */
+    protected $default;
+
+    /**
      * Filter constructor.
      * @param string $id
      * @param string $name
      * @param string $tip
      * @param string filterDB
      */
-    public function __construct($id, $name, $tip=null, $filterDB=null)
+    public function __construct($id, $name, $tip=null, $filterDB=null, $default="")
     {
         $this->id = $id;
         $this->name = $name;
         $this->tip = $tip;
         $this->filterDB = $filterDB;
+        $this->default = $default;
     }
 
     // ----------------- GETTERS AND SETTERS ----------------
@@ -131,6 +137,21 @@ abstract class Filter
         $this->styleClass = $styleClass;
     }
 
+    /**
+     * @return string
+     */
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * @param string $default
+     */
+    public function setDefault($default)
+    {
+        $this->default = $default;
+    }
 
     /**
      * Print a filter based on the given $templateFile which points to a Twig template

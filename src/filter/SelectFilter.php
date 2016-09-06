@@ -27,9 +27,9 @@ class SelectFilter extends Filter
      * @param string $tip
      * @param string filterDB
      */
-    public function __construct($id, $name, array $values, $tip=null, $filterDB=null)
+    public function __construct($id, $name, array $values, $tip=null, $filterDB=null, $default="")
     {
-        parent::__construct($id, $name, $tip, $filterDB);
+        parent::__construct($id, $name, $tip, $filterDB, $default);
         $this->values = $values;
     }
 
@@ -67,12 +67,12 @@ class SelectFilter extends Filter
 
     break;
      */
-    public function printFilter($templateFile = 'filterInTable.tpl'){
+    public function printFilter($selected="", $templateFile = 'filterInTable.tpl'){
         $template = Template::getTwig()->loadTemplate($templateFile);
         return $template->render(
             array(
                 'name' => $this->name,
-                'values' => $this->printValues()
+                'values' => $this->printValues($selected)
             )
         );
     }
@@ -95,30 +95,18 @@ class SelectFilter extends Filter
 //        return $res;
 //    }
 
-    public function printValues()
+    public function printValues($selected="")
     {
-//        $res = "<select id='$this->id' name='$this->name' class='$this->styleClass'>".
-//            "<option value='false'>all</option>";
-//            foreach($this->values as $value){
-//                $res .= "<option value='".$value->getId()."'";
-//                // TODO if selected
-//                if(false) {
-//                    $res .= " selected='selected'";
-//                }
-//                $res .= ">";
-//                $res .= $value->getName()."</option>";
-//                if( $value->getFilterDB() !== null ) {
-//                    $res .= " (n=" . AnalysisUtils::countDBContent("exprtable", "clintable", $value->getFilterDB() . " AND premium=1", "private") . ")";
-//                }
-//                $res .= "</option>";
-//            }
-//        $res .= "</select>";
-//        return $res;
+        if($this->default!="" && $selected==""){
+            $selected = $this->default;
+        }
+
         $template = Template::getTwig()->loadTemplate('selectFilter.tpl');
         return $template->render(
             array(
                 'id' => $this->id,
-                'values' => $this->values
+                'values' => $this->values,
+                'selected' => $selected
             )
         );
     }

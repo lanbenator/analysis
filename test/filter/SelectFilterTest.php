@@ -25,7 +25,13 @@ class SelectFilterTest extends PHPUnit_Framework_TestCase
         $this->sf = new SelectFilter(
             "id",
             "name",
-            array( new Value("vid", "vname", "filterdb") )
+            array(
+                new Value("vid", "vname", "filterdb"),
+                new Value("vid2", "vname2", "filterdb2")
+            ),
+            null,
+            null,
+            "vid2"
         );
     }
 
@@ -44,5 +50,17 @@ class SelectFilterTest extends PHPUnit_Framework_TestCase
         $printedFilter = $this->sf->printFilter();
         $this->assertRegExp("/<tr/", $printedFilter);
         $this->assertRegExp("/<\/tr/", $printedFilter);
+    }
+
+    public function testSelected(){
+        $printedFilter = $this->sf->printFilter("vid2");
+        $this->assertNotRegExp("/<option value='vid'[\s]*selected='selected'[\s]*>/", $printedFilter);
+        $this->assertRegExp("/<option value='vid2'[\s]*selected='selected'[\s]*>/", $printedFilter);
+    }
+
+    public function testDefaultSelected(){
+        $printedFilter = $this->sf->printFilter();
+        $this->assertNotRegExp("/<option value='vid'[\s]*selected='selected'[\s]*>/", $printedFilter);
+        $this->assertRegExp("/<option value='vid2'[\s]*selected='selected'[\s]*>/", $printedFilter);
     }
 }
