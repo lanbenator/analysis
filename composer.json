@@ -1,7 +1,9 @@
 {
   "name": "lanbenator/analysis",
+  "require-dev": {
+    "phpunit/phpunit": "^5.1"
+  },
   "require": {
-    "phpunit/phpunit": "^5.1",
     "twig/twig": "~1.0"
   },
   "autoload": {
