@@ -16,6 +16,11 @@ require_once "Filter.php";
 class SelectFilter extends Filter
 {
     /**
+     * @var Value
+     */
+    protected $emptyValue;
+
+    /**
      * @var Value[]
      */
     protected $values;
@@ -27,11 +32,14 @@ class SelectFilter extends Filter
      * @param Value[] $values
      * @param string $tip
      * @param string $filterDB
+     * @param string $default
      */
     public function __construct($id, $name, array $values, $tip=null, $filterDB=null, $default="")
     {
         parent::__construct($id, $name, $tip, $filterDB, $default);
-        $this->values = $values;
+        $this->emptyValue = new Value("false", "all", "");
+        $this->values = array($this->emptyValue);
+        $this->values = array_merge($this->values, $values);
     }
 
 
@@ -134,7 +142,7 @@ class SelectFilter extends Filter
      */
     private function createWhereByValue($value){
         $filterDbOfValue = $value->getFilterDB();
-        if($filterDbOfValue == null){
+        if(is_null($filterDbOfValue)){
             $filterDbOfValue = $this->id ."='".$value->getId()."'";
         }
         return $filterDbOfValue;

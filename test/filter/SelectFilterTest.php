@@ -26,7 +26,7 @@ class SelectFilterTest extends PHPUnit_Framework_TestCase
             "id",
             "name",
             array(
-                new Value("vid", "vname", "filterdb"),
+                new Value("vid", "vname"),
                 new Value("vid2", "vname2", "filterdb2")
             ),
             null,
@@ -43,7 +43,7 @@ class SelectFilterTest extends PHPUnit_Framework_TestCase
 
     public function testPrintValuesWithDefaultOption() {
         $printedValues = $this->sf->printValues();
-        $this->assertRegExp("/<option value='false'>all<\/option>/", $printedValues);
+        $this->assertRegExp("/<option value='false'[\s]*>[\s]*all[\s]*<\/option>/", $printedValues);
     }
 
     public function testPrintFilter(){
@@ -63,5 +63,17 @@ class SelectFilterTest extends PHPUnit_Framework_TestCase
         $printedFilter = $this->sf->printFilter();
         $this->assertNotRegExp("/<option value='vid'[\s]*selected='selected'[\s]*>/", $printedFilter);
         $this->assertRegExp("/<option value='vid2'[\s]*selected='selected'[\s]*>/", $printedFilter);
+    }
+
+    public function testCreateWhere(){
+        $this->assertRegExp("/id='vid'/", $this->sf->createWhere("vid"));
+    }
+
+    public function testCreateWhereWithGivenFilterDb(){
+        $this->assertRegExp("/filterdb2/", $this->sf->createWhere("vid2"));
+    }
+
+    public function testCreateWhereWithEmptyValue(){
+        $this->assertEquals("", $this->sf->createWhere("false"));
     }
 }
