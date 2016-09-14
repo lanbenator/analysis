@@ -186,4 +186,13 @@ abstract class Filter
      * @return mixed
      */
     abstract protected function printValues();
+
+    /**
+     * Create where statement by the given value which depends on the implementor class.
+     * It can be a valueId, or the given value.
+     *
+     * @param $value
+     * @return mixed
+     */
+    abstract public function createWhere($value);
 }

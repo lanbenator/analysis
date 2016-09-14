@@ -15,7 +15,7 @@ use PHPUnit_Framework_TestCase;
 class TextFilterTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var SelectFilter
+     * @var TextFilter
      */
     private $tf;
 
@@ -45,5 +45,15 @@ class TextFilterTest extends PHPUnit_Framework_TestCase
         $_POST['id'] = "new value";
         $printedFilter = $this->tf->printFilter();
         $this->assertRegExp("/value=\"new value\"/", $printedFilter);
+    }
+
+    public function testCreateWhereValid(){
+        $valid_value = "somevalue";
+        $this->assertRegExp("/id='$valid_value'/", $this->tf->createWhere($valid_value));
+    }
+
+    public function testCreateWhereInvalid(){
+        $invalid_value = "invalid value";
+        $this->assertNotRegExp("/id='$invalid_value'/", $this->tf->createWhere($invalid_value));
     }
 }

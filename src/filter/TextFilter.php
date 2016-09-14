@@ -47,4 +47,16 @@ class TextFilter extends Filter
             )
         );
     }
+
+    public function createWhere($value) {
+        if($this->isValueValid($value)){
+            return $this->id ."='$value'";
+        }
+        // TODO error handling
+        return "";
+    }
+
+    private function isValueValid($value){
+        return preg_match("/^[a-zA-Z0-9]*$/", $value);
+    }
 }

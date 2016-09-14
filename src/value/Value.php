@@ -45,8 +45,6 @@ class Value
         $this->tip = $tip;
     }
 
-
-
     // ----------------- GETTERS AND SETTERS ----------------
     /**
      * @return string

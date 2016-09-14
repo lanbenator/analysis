@@ -3,6 +3,7 @@
 namespace analysis\filter;
 
 use analysis\templates\Template;
+use analysis\value\Value;
 
 require_once "Filter.php";
 
@@ -25,7 +26,7 @@ class SelectFilter extends Filter
      * @param string $name
      * @param Value[] $values
      * @param string $tip
-     * @param string filterDB
+     * @param string $filterDB
      */
     public function __construct($id, $name, array $values, $tip=null, $filterDB=null, $default="")
     {
@@ -107,5 +108,45 @@ class SelectFilter extends Filter
                 'selected' => $selected
             )
         );
+    }
+
+    /**
+     * Finds value by id in the filter
+     *
+     * @param $valueId
+     * @return mixed
+     */
+    private function findValueById($valueId)
+    {
+        foreach ($this->values as $value) {
+            if ($value->getId() == $valueId) {
+                return $value;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Creates where statement for the db based on the filterDb of the given value.
+     *
+     * @param Value $value
+     * @return string
+     */
+    private function createWhereByValue($value){
+        $filterDbOfValue = $value->getFilterDB();
+        if($filterDbOfValue == null){
+            $filterDbOfValue = $this->id ."='".$value->getId()."'";
+        }
+        return $filterDbOfValue;
+    }
+
+    /**
+     * Creates where statement for the db based on the id of the value.
+     *
+     * @param $valueId
+     * @return string
+     */
+    public function createWhere($valueId){
+        return $this->createWhereByValue( $this->findValueById($valueId) );
     }
 }
