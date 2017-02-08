@@ -15,7 +15,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
     private $xml;
 
     public function __construct(){
-        $this->xml = simplexml_load_file( "../xml/breast_filters.xml" );
+        $this->xml = simplexml_load_file( "breast_filters.xml" );
     }
 
     public function testXml(){
@@ -31,7 +31,7 @@ class FilterTest extends PHPUnit_Framework_TestCase
     }
 
     public function testBreastFilters() {
-        self::filtersXmlTest( simplexml_load_file("../xml/breast_filters.xml") );
+        self::filtersXmlTest( simplexml_load_file("xml/breast_filters.xml") );
     }
 
     public function testBreastMetabricFilters() {
