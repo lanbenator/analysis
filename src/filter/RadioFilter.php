@@ -29,6 +29,7 @@ class RadioFilter extends Filter
     public function __construct($id, $name, array $values, $tip=null, $filterDB=null, $default="")
     {
         parent::__construct($id, $name, $tip, $filterDB, $default);
+        $this->values = $values;
     }
 
 
