@@ -37,8 +37,6 @@ class SelectFilter extends Filter
     public function __construct($id, $name, array $values, $tip=null, $filterDB=null, $default="")
     {
         parent::__construct($id, $name, $tip, $filterDB, $default);
-        $this->emptyValue = new Value("false", "all", "");
-        $this->values = array($this->emptyValue);
         $this->values = array_merge($this->values, $values);
     }
 
